@@ -13,4 +13,9 @@ current_resolution_height=$(echo $current_resolution | grep -E -o '[[:digit:]]+$
 sed -i "s/width=[[:digit:]]*/width=$current_resolution_width/" "$moonlight_config_file";
 sed -i "s/height=[[:digit:]]*/height=$current_resolution_height/" "$moonlight_config_file";
 
+if [[ $1 = 'stream' && ! -z "$2" && ! -z "$3"  ]]; then
+    /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=moonlight com.moonlight_stream.Moonlight $1 $2 "$3"
+    exit
+fi
+
 /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=moonlight com.moonlight_stream.Moonlight
