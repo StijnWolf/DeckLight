@@ -1,3 +1,5 @@
+
+
 # DeckLight
 Script to launch Moonlight with the current primary display's resolution on a Steam Deck.
 
@@ -24,4 +26,16 @@ A commonly used example: `stream Desktop "Desktop"`
 8. (Optional) Enjoy!
 
 ### What the script does:
-This script launches Moonlight, but before it does that it checks the primary display's current resolution. (For example 1080p on a monitor and 1280x800 in Steam Deck's handheld mode). Then edits Moonlight's config file to set its resolution to the primary display's current resolution.
+This script launches Moonlight, but before it does that it checks the primary display's current resolution and refresh rate. (For example 1080p@120hz on a monitor and 1280x800@90hz in Steam Deck's handheld mode). Then edits Moonlight's config file to set its resolution and fps to the primary display's current resolution and refresh rate respectively.
+
+### Moondeck support
+
+This script seems to work fine with [MoonDeck](https://github.com/FrogTheFrog/moondeck). 
+I use the following script as a custom Moonlight executable with the MoonDeck decky plugin: 
+
+    #!/bin/bash
+    /home/deck/Documents/DeckLight/DeckLight.sh stream SteamDeck "MoonDeckStream" $1 $2;
+
+Create a `.sh` file and place it wherever you like and set it as the custom Moonlight executable under Moondeck's Moonlight settings. The resolution settings passed by MoonDeck are ignored by the script.
+##### Why use this as a custom moonlight executable for MoonDeck?
+This script matches the refresh rate of the primary monitor, MoonDeck only has the option to set a static default value for Moonlight's related fps setting. 
